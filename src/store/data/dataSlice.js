@@ -15,9 +15,12 @@ export const dataSlice = createSlice({
     removeItem: (state, action) => {
       state.data = state.data.filter((_, i) => i !== action.payload);
     },
+    addItem: (state, action) => {
+      state.data.push(action.payload);
+    },
   },
 });
 
-export const { updateList, removeItem } = dataSlice.actions;
+export const { updateList, removeItem, addItem } = dataSlice.actions;
 
 export default dataSlice.reducer;

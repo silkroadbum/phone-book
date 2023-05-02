@@ -117,7 +117,8 @@ body {
   border-radius: 5px;
 }
 
-.textarea__btn {
+.textarea__btn,
+.button--add-record {
   font-family: inherit;
   font-size: 16px;
   padding: 5px;
@@ -126,6 +127,10 @@ body {
   outline: none;
   border: none;
   border-radius: 5px;
+}
+
+.button--add-record {
+  margin-bottom: 10px;
 }
 
 .textarea__btn:hover {
@@ -139,4 +144,46 @@ body {
 
 .textarea__btn:disabled:hover {
   background-color: gray;
+}
+
+.top-block {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-add {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.form-add__label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-add__btn-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-add__btn {
+  flex: 1;
+  padding: 5px;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-add__input {
+  padding: 5px;
+  font-family: inherit;
+  font-size: 16px;
 }
