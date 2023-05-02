@@ -1,14 +1,14 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/data/dataSlice';
+import { countries } from '../../const';
 
 function Form() {
   const [isVisible, setIsVisible] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('');
   const dispatch = useDispatch();
-  const inputNameRef = useRef();
-  const inputMobilePhoneRef = useRef();
-  const inputEmailRef = useRef();
 
   const onClickAddPerson = () => {
     setIsVisible(!isVisible);
@@ -22,26 +22,18 @@ function Form() {
     evt.preventDefault();
     const form = evt.target;
     const formData = new FormData(form);
-    const newPerson = {};
+    let newPerson = {};
     formData.forEach((value, key) => {
       newPerson[key] = value;
     });
+    newPerson = { ...newPerson, country: selectedCountry.value };
     dispatch(addItem(newPerson));
     setIsVisible(false);
     setIsValidForm(false);
   };
 
-  const onChangeField = () => {
-    const isValidNameField = inputNameRef.current ? inputNameRef.current.value.length > 0 : false;
-    const isValidMobilePhone = inputMobilePhoneRef.current
-      ? inputMobilePhoneRef.current.value === '' ||
-        /^\+7\d{10}$/.test(inputMobilePhoneRef.current.value)
-      : false;
-    const isValidEmail = inputEmailRef.current
-      ? inputEmailRef.current.value === '' ||
-        /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(inputEmailRef.current.value)
-      : false;
-    if (isValidNameField && isValidMobilePhone && isValidEmail) {
+  const onChangeField = ({ target }) => {
+    if (target.value.length > 0) {
       setIsValidForm(true);
     } else {
       setIsValidForm(false);
@@ -64,7 +56,6 @@ function Form() {
               name="name"
               id="name"
               required
-              ref={inputNameRef}
             />
           </label>
           <label className="form-add__label" htmlFor="birthday">
@@ -74,13 +65,11 @@ function Form() {
           <label className="form-add__label" htmlFor="mobilePhone">
             Мобильный номер:
             <input
-              onChange={onChangeField}
               className="form-add__input"
               type="tel"
               name="mobilePhone"
               id="mobilePhone"
-              ref={inputMobilePhoneRef}
-              pattern="+7[0-9]{10}"
+              pattern="^\+7\d{10}$"
               placeholder="Формат +7ХХХХХХХХХХ"
             />
           </label>
@@ -95,17 +84,23 @@ function Form() {
           <label className="form-add__label" htmlFor="email">
             Email:
             <input
-              onChange={onChangeField}
               className="form-add__input"
               type="email"
               name="email"
               id="email"
-              ref={inputEmailRef}
+              pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/"
+              placeholder="Формат test@test.ru"
             />
           </label>
           <label className="form-add__label" htmlFor="country">
             Страна проживания:
-            <input className="form-add__input" type="text" name="country" id="country" />
+            <Select
+              value={selectedCountry}
+              onChange={setSelectedCountry}
+              options={countries}
+              placeholder="Выберите страну"
+              isSearchable={true}
+            />
           </label>
           <span className="form-add__text">*-обязательные поля</span>
           <div className="form-add__btn-block">

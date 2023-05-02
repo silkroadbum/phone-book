@@ -8,6 +8,28 @@ export const headers = [
   'Страна проживания',
 ];
 
+export const countries = [
+  { value: 'Россия', label: 'Россия' },
+  { value: 'США', label: 'США' },
+  { value: 'Германия', label: 'Германия' },
+  { value: 'Казахстан', label: 'Казахстан' },
+  { value: 'Узбекистан', label: 'Узбекистан' },
+  { value: 'Кыргызстан', label: 'Кыргызстан' },
+  { value: 'Испания', label: 'Испания' },
+  { value: 'Великобритания', label: 'Великобритания' },
+  { value: 'Куба', label: 'Куба' },
+  { value: 'Мексика', label: 'Мексика' },
+  { value: 'Тайланд', label: 'Тайланд' },
+  { value: 'Китай', label: 'Китай' },
+  { value: 'Вьетнам', label: 'Вьетнам' },
+  { value: 'Ангола', label: 'Ангола' },
+  { value: 'Нигерия', label: 'Нигерия' },
+  { value: 'Иран', label: 'Иран' },
+  { value: 'Индонезия', label: 'Индонезия' },
+  { value: 'Австрия', label: 'Австрия' },
+  { value: 'Италия', label: 'Италия' },
+];
+
 export const peoples = [
   {
     name: 'Анатолий',
