@@ -111,6 +111,7 @@ body {
 }
 
 .textarea__text-field {
+  padding: 10px;
   width: 100%;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -121,4 +122,21 @@ body {
   font-size: 16px;
   padding: 5px;
   width: 200px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.textarea__btn:hover {
+  background-color: #cacaca;
+}
+
+.textarea__btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.textarea__btn:disabled:hover {
+  background-color: gray;
 }
