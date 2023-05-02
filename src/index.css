@@ -168,10 +168,18 @@ body {
   margin-bottom: 10px;
 }
 
+.form-add__label:last-of-type {
+  margin-bottom: 0;
+}
+
 .form-add__btn-block {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+}
+
+.form-add__text {
+  margin-bottom: 10px;
 }
 
 .form-add__btn {
