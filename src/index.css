@@ -86,3 +86,39 @@ body {
   background-color: transparent;
   cursor: pointer;
 }
+
+.input-edit {
+  width: 100%;
+  font-family: inherit;
+  outline: none;
+}
+
+.textarea {
+  display: flex;
+}
+
+.textarea__left-block {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.textarea__right-block {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.textarea__text-field {
+  width: 100%;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.textarea__btn {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+}

@@ -17,6 +17,7 @@ export const peoples = [
     workPhone: '666-777',
     email: 'anatolii@mail.ru',
     country: 'Россия',
+    isEdit: true,
   },
   {
     name: 'Василий',
@@ -26,6 +27,7 @@ export const peoples = [
     workPhone: '532-654',
     email: 'vasilii@yandex.ru',
     country: 'США',
+    isEdit: false,
   },
   {
     name: 'Генадий',
@@ -35,6 +37,7 @@ export const peoples = [
     workPhone: '312-444',
     email: 'gena@gmail.com',
     country: 'Канада',
+    isEdit: false,
   },
   {
     name: 'Александр',
@@ -44,5 +47,6 @@ export const peoples = [
     workPhone: '234-876',
     email: 'alex@gmail.com',
     country: 'Германия',
+    isEdit: false,
   },
 ];

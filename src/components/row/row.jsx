@@ -1,6 +1,6 @@
 import Buttons from '../buttons/buttons';
 
-function Row({ name, birthday, mobilePhone, cityPhone, workPhone, email, country, index }) {
+function Row({ name, birthday, mobilePhone, cityPhone, workPhone, email, country, index, isEdit }) {
   return (
     <>
       <td className="table__cell">{name}</td>
