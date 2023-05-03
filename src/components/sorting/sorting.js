@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../../store/data/dataSlice';
+import { setSort, sortingList } from '../../store/data/dataSlice';
 import { sorts } from '../../const';
 
 function Sorting() {
@@ -8,7 +8,6 @@ function Sorting() {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const dispatch = useDispatch();
   const sortRef = useRef(null);
-  console.log(sortData);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -29,6 +28,7 @@ function Sorting() {
   const chooseSort = (sort) => {
     dispatch(setSort(sort));
     setIsVisibleModal(false);
+    dispatch(sortingList(sort.id));
   };
 
   return (

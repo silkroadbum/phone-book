@@ -22,9 +22,37 @@ export const dataSlice = createSlice({
     setSort: (state, action) => {
       state.sortData = action.payload;
     },
+    sortingList: (state, action) => {
+      switch (action.payload) {
+        case 0:
+          state.data = state.data.sort((a, b) => {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
+              return 1;
+            } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+          break;
+        case 1:
+          state.data = state.data.sort((a, b) => {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
+              return -1;
+            } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          break;
+        default:
+          break;
+      }
+    },
   },
 });
 
-export const { updateList, removeItem, addItem, setSort } = dataSlice.actions;
+export const { updateList, removeItem, addItem, setSort, sortingList } = dataSlice.actions;
 
 export default dataSlice.reducer;
