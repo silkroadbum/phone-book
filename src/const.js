@@ -72,3 +72,8 @@ export const peoples = [
     isEdit: false,
   },
 ];
+
+export const sorts = [
+  { id: 0, name: 'По имени(возрастание)' },
+  { id: 1, name: 'По имени(убывание)' },
+];
