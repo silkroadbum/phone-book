@@ -3,6 +3,7 @@ import { peoples } from '../../const';
 
 const initialState = {
   data: peoples,
+  sortData: { id: 0, name: 'По имени(возрастание)' },
 };
 
 export const dataSlice = createSlice({
@@ -18,9 +19,12 @@ export const dataSlice = createSlice({
     addItem: (state, action) => {
       state.data.push(action.payload);
     },
+    setSort: (state, action) => {
+      state.sortData = action.payload;
+    },
   },
 });
 
-export const { updateList, removeItem, addItem } = dataSlice.actions;
+export const { updateList, removeItem, addItem, setSort } = dataSlice.actions;
 
 export default dataSlice.reducer;

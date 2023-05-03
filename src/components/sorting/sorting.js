@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSort } from '../../store/data/dataSlice';
 import { sorts } from '../../const';
 
 function Sorting() {
-  const [choosenSort, setChoosenSort] = useState({ id: 0, name: 'По имени(возрастание)' });
+  const { sortData } = useSelector((state) => state.data);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const dispatch = useDispatch();
   const sortRef = useRef(null);
+  console.log(sortData);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -23,7 +27,7 @@ function Sorting() {
   };
 
   const chooseSort = (sort) => {
-    setChoosenSort(sort);
+    dispatch(setSort(sort));
     setIsVisibleModal(false);
   };
 
@@ -31,12 +35,12 @@ function Sorting() {
     <div ref={sortRef} className="sort">
       <span className="sort__title">Сортировать по: </span>
       <span onClick={showModal} className="sort__name">
-        {choosenSort.name}
+        {sortData.name}
       </span>
       {isVisibleModal ? (
         <ul className="sort__list">
           {sorts.map((item) => (
-            <li onClick={() => chooseSort(item)} className="sort__item">
+            <li key={item.id} onClick={() => chooseSort(item)} className="sort__item">
               {item.name}
             </li>
           ))}
