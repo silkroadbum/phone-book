@@ -12,7 +12,7 @@ function Table() {
     data.map((item, index) => (
       <Row
         key={index}
-        {...item}
+        item={item}
         index={index}
         onClickEdit={setEditRowIndex}
         editRowIndex={editRowIndex}

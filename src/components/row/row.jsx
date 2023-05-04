@@ -4,26 +4,9 @@ import { useDispatch } from 'react-redux';
 import Buttons from '../buttons/buttons';
 import dayjs from 'dayjs';
 
-function Row({
-  name,
-  birthday,
-  mobilePhone,
-  cityPhone,
-  workPhone,
-  email,
-  country,
-  index,
-  onClickEdit,
-  editRowIndex,
-}) {
+function Row({ item, index, onClickEdit, editRowIndex }) {
   const [rowData, setRowData] = useState({
-    name,
-    birthday,
-    mobilePhone,
-    cityPhone,
-    workPhone,
-    email,
-    country,
+    ...item,
   });
   const dispatch = useDispatch();
 
@@ -37,91 +20,103 @@ function Row({
     onClickEdit(-1);
   };
 
-  return editRowIndex === index ? (
+  const isEdit = editRowIndex === index;
+
+  return (
     <div className="table__row">
-      <div className="table__cell table__cell--name">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="name"
-          type="text"
-          value={rowData.name}
-          required
-        />
-      </div>
       <div className="table__cell">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="birthday"
-          type="date"
-          value={dayjs(rowData.birthday).format('YYYY-MM-DD')}
-        />
-      </div>
-      <div className="table__cell">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="mobilePhone"
-          type="tel"
-          value={rowData.mobilePhone}
-        />
-      </div>
-      <div className="table__cell">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="cityPhone"
-          type="text"
-          value={rowData.cityPhone}
-        />
-      </div>
-      <div className="table__cell">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="workPhone"
-          type="text"
-          value={rowData.workPhone}
-        />
-      </div>
-      <div className="table__cell">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="workPhone"
-          type="text"
-          value={rowData.email}
-        />
-      </div>
-      <div className="table__cell table__cell--with-buttons">
-        <input
-          className="table__input"
-          onChange={onChangeInput}
-          name="country"
-          type="text"
-          value={rowData.country}
-        />
-        {
-          <Buttons
-            onClickEdit={onClickEdit}
-            index={index}
-            editRowIndex={editRowIndex}
-            onSave={handleSave}
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="name"
+            type="text"
+            value={rowData.name}
+            required
           />
-        }
+        ) : (
+          item.name
+        )}
       </div>
-    </div>
-  ) : (
-    <div className="table__row">
-      <div className="table__cell">{name}</div>
-      <div className="table__cell">{birthday ? dayjs(birthday).format('DD.MM.YYYY') : '-'}</div>
-      <div className="table__cell">{mobilePhone || '-'}</div>
-      <div className="table__cell">{cityPhone || '-'}</div>
-      <div className="table__cell">{workPhone || '-'}</div>
-      <div className="table__cell">{email || '-'}</div>
+      <div className="table__cell">
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="birthday"
+            type="date"
+            value={dayjs(rowData.birthday).format('YYYY-MM-DD')}
+          />
+        ) : item.birthday ? (
+          dayjs(item.birthday).format('DD.MM.YYYY')
+        ) : (
+          '-'
+        )}
+      </div>
+      <div className="table__cell">
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="mobilePhone"
+            type="tel"
+            value={rowData.mobilePhone}
+          />
+        ) : (
+          item.mobilePhone || '-'
+        )}
+      </div>
+      <div className="table__cell">
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="cityPhone"
+            type="text"
+            value={rowData.cityPhone}
+          />
+        ) : (
+          item.cityPhone || '-'
+        )}
+      </div>
+      <div className="table__cell">
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="workPhone"
+            type="text"
+            value={rowData.workPhone}
+          />
+        ) : (
+          item.workPhone || '-'
+        )}
+      </div>
+      <div className="table__cell">
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="workPhone"
+            type="text"
+            value={rowData.email}
+          />
+        ) : (
+          item.email || '-'
+        )}
+      </div>
       <div className="table__cell table__cell--with-buttons">
-        {country || '-'}
+        {isEdit ? (
+          <input
+            className="table__input"
+            onChange={onChangeInput}
+            name="country"
+            type="text"
+            value={rowData.country}
+          />
+        ) : (
+          item.country || '-'
+        )}
         {
           <Buttons
             onClickEdit={onClickEdit}
