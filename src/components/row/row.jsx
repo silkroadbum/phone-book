@@ -47,7 +47,7 @@ function Row({
           onChange={onChangeInput}
           name="birthday"
           type="date"
-          value={dayjs(birthday).format('YYYY-MM-DD')}
+          value={dayjs(rowData.birthday).format('YYYY-MM-DD')}
         />
       </td>
       <td className="table__cell">
