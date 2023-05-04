@@ -79,7 +79,7 @@ body {
 
 .table__cell--with-buttons {
   position: relative;
-  padding-right: 60px;
+  padding-right: 50px;
   width: 250px;
 }
 
@@ -98,9 +98,16 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.table__input {
+  font-family: inherit;
+  font-size: 14px;
+}
+
 .buttons-block {
   position: absolute;
   right: 2px;
+  display: flex;
+  gap: 5px;
   top: 18px;
 }
 
@@ -108,6 +115,8 @@ body {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
 .input-edit {
