@@ -51,7 +51,7 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className="table__input"
+            className="table__input table__input--date"
             onChange={onChangeInput}
             name="birthday"
             type="date"

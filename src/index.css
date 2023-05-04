@@ -101,6 +101,14 @@ body {
 .table__input {
   font-family: inherit;
   font-size: 14px;
+  height: 37px;
+  padding-left: 10px;
+  border: 1px solid rgb(206, 203, 203);
+  border-radius: 3px;
+}
+
+.table__input--date {
+  padding-left: 5px;
 }
 
 .buttons-block {
