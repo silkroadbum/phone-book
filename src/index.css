@@ -105,6 +105,11 @@ body {
   padding-left: 10px;
   border: 1px solid rgb(206, 203, 203);
   border-radius: 3px;
+  outline: none;
+}
+
+.table__input::placeholder {
+  font-size: 12px;
 }
 
 .table__input--date {
@@ -293,4 +298,8 @@ body {
 
 .sort__item:hover {
   color: #346089;
+}
+
+.error {
+  border: 2px solid red;
 }

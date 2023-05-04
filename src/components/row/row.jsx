@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { updateItem } from '../../store/data/dataSlice';
 import Buttons from '../buttons/buttons';
 import { countries } from '../../const';
+import { checkNameField, checkMobilePhoneFiled, checkEmailFiled } from '../../utils';
 
 function Row({ item, index, onClickEdit, editRowIndex }) {
   const [rowData, setRowData] = useState({ ...item });
@@ -13,10 +14,20 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
     value: item.country,
     label: item.country,
   });
+  const [nameFieldError, setNameFieldError] = useState(false);
+  const [mobileFieldError, setMobileFieldError] = useState(false);
+  const [emailFieldError, setEmailFieldError] = useState(false);
   const dispatch = useDispatch();
 
   const onChangeInput = ({ target }) => {
     const { name, value } = target;
+    if (name === 'name') {
+      checkNameField(value, setNameFieldError);
+    } else if (name === 'mobilePhone') {
+      checkMobilePhoneFiled(value, setMobileFieldError);
+    } else if (name === 'email') {
+      checkEmailFiled(value, setEmailFieldError);
+    }
     setRowData({ ...rowData, [name]: value });
   };
 
@@ -37,11 +48,12 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className="table__input"
+            className={`table__input ${nameFieldError ? 'error' : ''}`}
             onChange={onChangeInput}
             name="name"
             type="text"
             value={rowData.name}
+            placeholder="Обязательное поле"
             required
           />
         ) : (
@@ -66,10 +78,11 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className="table__input"
+            className={`table__input ${mobileFieldError ? 'error' : ''}`}
             onChange={onChangeInput}
             name="mobilePhone"
             type="tel"
+            placeholder="Формат +7ХХХХХХХХХХ"
             value={rowData.mobilePhone}
           />
         ) : (
@@ -105,11 +118,12 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className="table__input"
+            className={`table__input ${emailFieldError ? 'error' : ''}`}
             onChange={onChangeInput}
-            name="workPhone"
-            type="text"
+            name="email"
+            type="email"
             value={rowData.email}
+            placeholder="Формат test@test.ru"
           />
         ) : (
           item.email || '-'

@@ -51,3 +51,32 @@ export const sortByBirthdayAsc = (a, b) => {
     return 0;
   }
 };
+
+//функция проверки поля имени
+export const checkNameField = (value, fn) => {
+  if (value === '') {
+    fn(true);
+  } else {
+    fn(false);
+  }
+};
+
+//функция проверки поля мобильного номера
+export const checkMobilePhoneFiled = (value, fn) => {
+  if (value !== '') {
+    const isValid = /^(\+7)\d{10}$/.test(value);
+    fn(!isValid);
+  } else {
+    fn(false);
+  }
+};
+
+//функция проверки поля мобильного номера
+export const checkEmailFiled = (value, fn) => {
+  if (value !== '') {
+    const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+    fn(!isValid);
+  } else {
+    fn(false);
+  }
+};
