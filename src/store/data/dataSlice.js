@@ -14,6 +14,10 @@ export const dataSlice = createSlice({
     updateList: (state, action) => {
       state.data = action.payload;
     },
+    updateItem: (state, action) => {
+      const { index, ...obj } = action.payload;
+      state.data[index] = obj;
+    },
     removeItem: (state, action) => {
       state.data = state.data.filter((_, i) => i !== action.payload);
     },
@@ -44,6 +48,7 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { updateList, removeItem, addItem, setSort, sortingList } = dataSlice.actions;
+export const { updateList, removeItem, addItem, setSort, sortingList, updateItem } =
+  dataSlice.actions;
 
 export default dataSlice.reducer;

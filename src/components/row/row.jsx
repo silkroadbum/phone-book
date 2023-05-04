@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { updateItem } from '../../store/data/dataSlice';
+import { useDispatch } from 'react-redux';
 import Buttons from '../buttons/buttons';
 import dayjs from 'dayjs';
 
@@ -23,12 +25,16 @@ function Row({
     email,
     country,
   });
-  // const [day, month, year] = birthday.split('.');
-  // const formatedDate = new Date(year, month, day);
+  const dispatch = useDispatch();
 
   const onChangeInput = ({ target }) => {
     const { name, value } = target;
     setRowData({ ...rowData, [name]: value });
+  };
+
+  const handleSave = () => {
+    dispatch(updateItem({ index, ...rowData }));
+    onClickEdit(-1);
   };
 
   return editRowIndex === index ? (
@@ -58,7 +64,14 @@ function Row({
       </td>
       <td className="table__cell table__cell--with-buttons">
         <input onChange={onChangeInput} name="country" type="text" value={rowData.country} />
-        {<Buttons onClickEdit={onClickEdit} index={index} editRowIndex={editRowIndex} />}
+        {
+          <Buttons
+            onClickEdit={onClickEdit}
+            index={index}
+            editRowIndex={editRowIndex}
+            onSave={handleSave}
+          />
+        }
       </td>
     </tr>
   ) : (
@@ -71,7 +84,14 @@ function Row({
       <td className="table__cell">{email || '-'}</td>
       <td className="table__cell table__cell--with-buttons">
         {country || '-'}
-        {<Buttons onClickEdit={onClickEdit} index={index} editRowIndex={editRowIndex} />}
+        {
+          <Buttons
+            onClickEdit={onClickEdit}
+            onSave={handleSave}
+            index={index}
+            editRowIndex={editRowIndex}
+          />
+        }
       </td>
     </tr>
   );
