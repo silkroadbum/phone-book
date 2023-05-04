@@ -14,28 +14,34 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
     value: item.country,
     label: item.country,
   });
-  const [nameFieldError, setNameFieldError] = useState(false);
-  const [mobileFieldError, setMobileFieldError] = useState(false);
-  const [emailFieldError, setEmailFieldError] = useState(false);
+  const [isValidName, setIsValidName] = useState(true);
+  const [isValidMobile, setIsValidMobile] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const dispatch = useDispatch();
 
   const onChangeInput = ({ target }) => {
     const { name, value } = target;
-    let nameError = false;
-    let mobileError = false;
-    let emailError = false;
+    let nameValid = true;
+    let mobileValid = true;
+    let emailValid = true;
     if (name === 'name') {
-      nameError = checkNameField(value);
-      setNameFieldError(nameError);
+      nameValid = checkNameField(value);
+      setIsValidName(nameValid);
+      mobileValid = isValidMobile;
+      emailValid = isValidEmail;
     } else if (name === 'mobilePhone') {
-      mobileError = checkMobilePhoneFiled(value);
-      setMobileFieldError(mobileError);
+      mobileValid = checkMobilePhoneFiled(value);
+      setIsValidMobile(mobileValid);
+      nameValid = isValidName;
+      emailValid = isValidEmail;
     } else if (name === 'email') {
-      emailError = checkEmailFiled(value);
-      setEmailFieldError(emailError);
+      emailValid = checkEmailFiled(value);
+      setIsValidEmail(emailValid);
+      nameValid = isValidName;
+      mobileValid = isValidMobile;
     }
-    checkFields(nameError, mobileError, emailError, setIsDisabledButton);
+    checkFields(nameValid, mobileValid, emailValid, setIsDisabledButton);
     setRowData({ ...rowData, [name]: value });
   };
 
@@ -56,7 +62,7 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className={`table__input ${nameFieldError ? 'error' : ''}`}
+            className={`table__input ${isValidName ? '' : 'error'}`}
             onChange={onChangeInput}
             name="name"
             type="text"
@@ -86,7 +92,7 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className={`table__input ${mobileFieldError ? 'error' : ''}`}
+            className={`table__input ${isValidMobile ? '' : 'error'}`}
             onChange={onChangeInput}
             name="mobilePhone"
             type="tel"
@@ -126,7 +132,7 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       <div className="table__cell">
         {isEdit ? (
           <input
-            className={`table__input ${emailFieldError ? 'error' : ''}`}
+            className={`table__input ${isValidEmail ? '' : 'error'}`}
             onChange={onChangeInput}
             name="email"
             type="email"

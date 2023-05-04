@@ -53,20 +53,15 @@ export const sortByBirthdayAsc = (a, b) => {
 };
 
 //функция проверки поля имени
-export const checkNameField = (value) => {
-  if (value === '') {
-    return true;
-  }
-  return false;
-};
+export const checkNameField = (value) => value !== '';
 
 //функция проверки поля мобильного номера
 export const checkMobilePhoneFiled = (value) => {
   if (value !== '') {
     const isError = /^(\+7)\d{10}$/.test(value);
-    return !isError;
+    return isError;
   } else {
-    return false;
+    return true;
   }
 };
 
@@ -74,16 +69,17 @@ export const checkMobilePhoneFiled = (value) => {
 export const checkEmailFiled = (value) => {
   if (value !== '') {
     const isError = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-    return !isError;
+    return isError;
   } else {
-    return false;
+    return true;
   }
 };
 
 export const checkFields = (nameField, mobileField, emailField, fn) => {
-  if (nameField || mobileField || emailField) {
-    fn(true);
-  } else {
+  console.log(nameField, mobileField, emailField);
+  if (nameField && mobileField && emailField) {
     fn(false);
+  } else {
+    fn(true);
   }
 };
