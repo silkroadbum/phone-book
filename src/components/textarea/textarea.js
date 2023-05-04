@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateList } from '../../store/data/dataSlice';
+import { updateList, sortingList } from '../../store/data/dataSlice';
 import csvtojson from 'csvtojson';
 
 function Textarea() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [text, setText] = useState('');
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.data);
+  const { data, sortData } = useSelector((state) => state.data);
 
   const onClickGetData = () => {
     try {
@@ -26,6 +26,7 @@ function Textarea() {
         dispatch(updateList(newData));
         setText('');
         setIsDisabled(true);
+        dispatch(sortingList(sortData.id));
       } catch (err) {
         alert('Данные введены не в формате JSON');
         console.error(err);
