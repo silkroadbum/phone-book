@@ -68,7 +68,7 @@ export const checkMobilePhoneFiled = (value) => {
 //функция проверки поля email
 export const checkEmailFiled = (value) => {
   if (value !== '') {
-    const isError = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+    const isError = /^[a-zA-Z0-9_-]+@[a-zA-Z]+\.([a-zA-Z]+\.?)+$/.test(value);
     return isError;
   } else {
     return true;
