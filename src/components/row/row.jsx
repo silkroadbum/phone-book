@@ -1,7 +1,18 @@
 import Buttons from '../buttons/buttons';
 import dayjs from 'dayjs';
 
-function Row({ name, birthday, mobilePhone, cityPhone, workPhone, email, country, index, isEdit }) {
+function Row({
+  name,
+  birthday,
+  mobilePhone,
+  cityPhone,
+  workPhone,
+  email,
+  country,
+  index,
+  onClickEdit,
+  editRowIndex,
+}) {
   return (
     <>
       <td className="table__cell">{name}</td>
@@ -12,7 +23,7 @@ function Row({ name, birthday, mobilePhone, cityPhone, workPhone, email, country
       <td className="table__cell">{email || '-'}</td>
       <td className="table__cell table__cell--with-buttons">
         {country || '-'}
-        {<Buttons index={index} />}
+        {<Buttons onClickEdit={onClickEdit} index={index} editRowIndex={editRowIndex} />}
       </td>
     </>
   );

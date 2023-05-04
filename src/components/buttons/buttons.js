@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../store/data/dataSlice';
 
-function Buttons({ index }) {
+function Buttons({ index, onClickEdit, editRowIndex }) {
   const dispatch = useDispatch();
   const onClickRemove = (id) => {
     console.log(id);
@@ -10,9 +10,15 @@ function Buttons({ index }) {
 
   return (
     <span className="buttons-block">
-      <button className="button" title="Редактировать запись">
-        <img src="/img/edit.png" alt="Редактировать" width={22} height={22} />
-      </button>
+      {editRowIndex === index ? (
+        <button onClick={() => onClickEdit(-1)} className="button" title="Сохранить изменения">
+          <img src="/img/check.png" alt="Сохранить" width={22} height={22} />
+        </button>
+      ) : (
+        <button onClick={() => onClickEdit(index)} className="button" title="Редактировать запись">
+          <img src="/img/edit.png" alt="Редактировать" width={22} height={22} />
+        </button>
+      )}
       <button onClick={() => onClickRemove(index)} className="button" title="Удалить запись">
         <img src="/img/close.svg" alt="Удалить" />
       </button>
