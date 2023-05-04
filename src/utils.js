@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 
+//функция сортировки списка по имени по возрастанию
 export const sortByNameDesc = (a, b) => {
   if (a.name.toLowerCase() > b.name.toLowerCase()) {
     return 1;
@@ -10,6 +11,7 @@ export const sortByNameDesc = (a, b) => {
   }
 };
 
+//функция сортировки списка по имени по убыванию
 export const sortByNameAsc = (a, b) => {
   if (a.name.toLowerCase() > b.name.toLowerCase()) {
     return -1;
@@ -20,6 +22,7 @@ export const sortByNameAsc = (a, b) => {
   }
 };
 
+//функция сортировки списка по дате рождения по возрастанию
 export const sortByBirthdayDesc = (a, b) => {
   const [dayA, monthA, yearA] = dayjs(a.birthday).format('DD.MM.YYYY').split('.');
   const [dayB, monthB, yearB] = dayjs(b.birthday).format('DD.MM.YYYY').split('.');
@@ -34,6 +37,7 @@ export const sortByBirthdayDesc = (a, b) => {
   }
 };
 
+//функция сортировки списка по дате рождения по убыванию
 export const sortByBirthdayAsc = (a, b) => {
   const [dayA, monthA, yearA] = dayjs(a.birthday).format('DD.MM.YYYY').split('.');
   const [dayB, monthB, yearB] = dayjs(b.birthday).format('DD.MM.YYYY').split('.');
