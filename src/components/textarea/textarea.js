@@ -42,24 +42,21 @@ function Textarea() {
     }
   };
 
-  const handleFileUpload = ({ target }) => {
+  const handleFileUpload = async ({ target }) => {
     const file = target.files[0];
     const reader = new FileReader();
     if ((file && file.type === 'text/csv') || (file && file.type === 'application/json')) {
-      reader.onload = () => {
+      reader.addEventListener('load', async () => {
         let data;
         if (file.type === 'text/csv') {
-          csvtojson()
-            .fromString(reader.result)
-            .then((json) => {
-              setText(JSON.stringify(json));
-            });
+          const json = await csvtojson().fromString(reader.result);
+          setText(JSON.stringify(json));
         } else {
           data = reader.result;
+          setText(data);
         }
-        setText(data);
         setIsDisabled(false);
-      };
+      });
       reader.readAsText(file);
     } else {
       alert('Загрузите файл формата JSON или СVS');
