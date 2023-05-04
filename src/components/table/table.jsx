@@ -10,9 +10,13 @@ function Table() {
 
   const renderRows = () =>
     data.map((item, index) => (
-      <tr key={index} className="table__row">
-        <Row {...item} index={index} onClickEdit={setEditRowIndex} editRowIndex={editRowIndex} />
-      </tr>
+      <Row
+        key={index}
+        {...item}
+        index={index}
+        onClickEdit={setEditRowIndex}
+        editRowIndex={editRowIndex}
+      />
     ));
 
   const renderHeaders = () =>
