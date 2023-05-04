@@ -132,6 +132,11 @@ body {
   margin: 0;
 }
 
+.button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
 .input-edit {
   width: 100%;
   font-family: inherit;

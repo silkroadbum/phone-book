@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { updateItem } from '../../store/data/dataSlice';
 import Buttons from '../buttons/buttons';
 import { countries } from '../../const';
-import { checkNameField, checkMobilePhoneFiled, checkEmailFiled } from '../../utils';
+import { checkNameField, checkMobilePhoneFiled, checkEmailFiled, checkFields } from '../../utils';
 
 function Row({ item, index, onClickEdit, editRowIndex }) {
   const [rowData, setRowData] = useState({ ...item });
@@ -17,17 +17,25 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
   const [nameFieldError, setNameFieldError] = useState(false);
   const [mobileFieldError, setMobileFieldError] = useState(false);
   const [emailFieldError, setEmailFieldError] = useState(false);
+  const [isDisabledButton, setIsDisabledButton] = useState(false);
   const dispatch = useDispatch();
 
   const onChangeInput = ({ target }) => {
     const { name, value } = target;
+    let nameError = false;
+    let mobileError = false;
+    let emailError = false;
     if (name === 'name') {
-      checkNameField(value, setNameFieldError);
+      nameError = checkNameField(value);
+      setNameFieldError(nameError);
     } else if (name === 'mobilePhone') {
-      checkMobilePhoneFiled(value, setMobileFieldError);
+      mobileError = checkMobilePhoneFiled(value);
+      setMobileFieldError(mobileError);
     } else if (name === 'email') {
-      checkEmailFiled(value, setEmailFieldError);
+      emailError = checkEmailFiled(value);
+      setEmailFieldError(emailError);
     }
+    checkFields(nameError, mobileError, emailError, setIsDisabledButton);
     setRowData({ ...rowData, [name]: value });
   };
 
@@ -154,6 +162,7 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
             onSave={handleSave}
             index={index}
             editRowIndex={editRowIndex}
+            isDisabledBtn={isDisabledButton}
           />
         }
       </div>

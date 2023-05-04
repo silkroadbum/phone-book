@@ -53,29 +53,36 @@ export const sortByBirthdayAsc = (a, b) => {
 };
 
 //функция проверки поля имени
-export const checkNameField = (value, fn) => {
+export const checkNameField = (value) => {
   if (value === '') {
+    return true;
+  }
+  return false;
+};
+
+//функция проверки поля мобильного номера
+export const checkMobilePhoneFiled = (value) => {
+  if (value !== '') {
+    const isError = /^(\+7)\d{10}$/.test(value);
+    return !isError;
+  } else {
+    return false;
+  }
+};
+
+//функция проверки поля email
+export const checkEmailFiled = (value) => {
+  if (value !== '') {
+    const isError = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+    return !isError;
+  } else {
+    return false;
+  }
+};
+
+export const checkFields = (nameField, mobileField, emailField, fn) => {
+  if (nameField || mobileField || emailField) {
     fn(true);
-  } else {
-    fn(false);
-  }
-};
-
-//функция проверки поля мобильного номера
-export const checkMobilePhoneFiled = (value, fn) => {
-  if (value !== '') {
-    const isValid = /^(\+7)\d{10}$/.test(value);
-    fn(!isValid);
-  } else {
-    fn(false);
-  }
-};
-
-//функция проверки поля мобильного номера
-export const checkEmailFiled = (value, fn) => {
-  if (value !== '') {
-    const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-    fn(!isValid);
   } else {
     fn(false);
   }
