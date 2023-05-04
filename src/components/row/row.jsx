@@ -1,12 +1,17 @@
 import { useState } from 'react';
-import { updateItem } from '../../store/data/dataSlice';
+import Select from 'react-select';
 import { useDispatch } from 'react-redux';
-import Buttons from '../buttons/buttons';
 import dayjs from 'dayjs';
 
+import { updateItem } from '../../store/data/dataSlice';
+import Buttons from '../buttons/buttons';
+import { countries } from '../../const';
+
 function Row({ item, index, onClickEdit, editRowIndex }) {
-  const [rowData, setRowData] = useState({
-    ...item,
+  const [rowData, setRowData] = useState({ ...item });
+  const [selectedCountry, setSelectedCountry] = useState({
+    value: item.country,
+    label: item.country,
   });
   const dispatch = useDispatch();
 
@@ -18,6 +23,11 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
   const handleSave = () => {
     dispatch(updateItem({ index, ...rowData }));
     onClickEdit(-1);
+  };
+
+  const onChangeCountry = (selectedOption) => {
+    setSelectedCountry(selectedOption);
+    setRowData({ ...rowData, country: selectedOption.value });
   };
 
   const isEdit = editRowIndex === index;
@@ -107,12 +117,19 @@ function Row({ item, index, onClickEdit, editRowIndex }) {
       </div>
       <div className="table__cell table__cell--with-buttons">
         {isEdit ? (
-          <input
-            className="table__input"
-            onChange={onChangeInput}
-            name="country"
-            type="text"
-            value={rowData.country}
+          <Select
+            value={selectedCountry}
+            onChange={onChangeCountry}
+            options={countries}
+            placeholder="Выберите страну"
+            isSearchable={true}
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                width: '150px',
+                fontSize: '14px',
+              }),
+            }}
           />
         ) : (
           item.country || '-'
