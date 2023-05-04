@@ -129,8 +129,29 @@ body {
   border-radius: 5px;
 }
 
+.textarea__btn {
+  margin-bottom: 10px;
+}
+
 .button--add-record {
   margin-bottom: 10px;
+}
+
+.textarea__input {
+  width: 200px;
+  height: 100px;
+}
+
+.textarea__file-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea__input-label {
+  color: #ffffff;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .textarea__btn:hover {
