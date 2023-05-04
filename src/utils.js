@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const sortByNameDesc = (a, b) => {
   if (a.name.toLowerCase() > b.name.toLowerCase()) {
     return 1;
@@ -19,8 +21,8 @@ export const sortByNameAsc = (a, b) => {
 };
 
 export const sortByBirthdayDesc = (a, b) => {
-  const [dayA, monthA, yearA] = a.birthday.split('.');
-  const [dayB, monthB, yearB] = b.birthday.split('.');
+  const [dayA, monthA, yearA] = dayjs(a.birthday).format('DD.MM.YYYY').split('.');
+  const [dayB, monthB, yearB] = dayjs(b.birthday).format('DD.MM.YYYY').split('.');
   const dateA = new Date(yearA, monthA, dayA);
   const dateB = new Date(yearB, monthB, dayB);
   if (dateA < dateB) {
@@ -33,8 +35,8 @@ export const sortByBirthdayDesc = (a, b) => {
 };
 
 export const sortByBirthdayAsc = (a, b) => {
-  const [dayA, monthA, yearA] = a.birthday.split('.');
-  const [dayB, monthB, yearB] = b.birthday.split('.');
+  const [dayA, monthA, yearA] = dayjs(a.birthday).format('DD.MM.YYYY').split('.');
+  const [dayB, monthB, yearB] = dayjs(b.birthday).format('DD.MM.YYYY').split('.');
   const dateA = new Date(yearA, monthA, dayA);
   const dateB = new Date(yearB, monthB, dayB);
   if (dateA < dateB) {
