@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateList } from '../../store/data/dataSlice';
 
 function Textarea() {
   const [isDisabled, setIsDisabled] = useState(true);
+  const [text, setText] = useState('');
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.data);
-  const textAreaRef = useRef(null);
 
   const onClickGetData = () => {
     try {
-      textAreaRef.current.value = JSON.stringify(data);
+      setText(JSON.stringify(data));
       setIsDisabled(false);
     } catch (error) {
       alert('Не удалось получить данные!');
@@ -19,11 +19,11 @@ function Textarea() {
   };
 
   const onClickSendData = () => {
-    if (textAreaRef.current.value) {
+    if (text.length > 0) {
       try {
-        const newData = JSON.parse(textAreaRef.current.value);
+        const newData = JSON.parse(text);
         dispatch(updateList(newData));
-        textAreaRef.current.value = '';
+        setText('');
         setIsDisabled(true);
       } catch (err) {
         alert('Данные введены не в формате JSON');
@@ -32,8 +32,9 @@ function Textarea() {
     }
   };
 
-  const checkTextArea = ({ target }) => {
-    if (target.value) {
+  const onChangeTextArea = ({ target }) => {
+    setText(target.value);
+    if (target.value.length > 0) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -52,11 +53,11 @@ function Textarea() {
       </div>
       <div className="textarea__right-block">
         <textarea
-          onInput={checkTextArea}
+          onChange={onChangeTextArea}
           className="textarea__text-field"
           name="json"
           rows="20"
-          ref={textAreaRef}></textarea>
+          value={text}></textarea>
       </div>
     </div>
   );
