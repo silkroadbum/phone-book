@@ -21,21 +21,25 @@ function Table() {
 
   const renderHeaders = () =>
     headers.map((header, index) => (
-      <th key={index} className="table__header">
+      <div
+        key={index}
+        className={
+          index === headers.length - 1
+            ? 'table__header-item table__header-item--wider'
+            : 'table__header-item'
+        }>
         {header}
-      </th>
+      </div>
     ));
 
   return (
     <>
       <h1 className="title">Phone book</h1>
       <div className="table-wrapper">
-        <table className="table">
-          <thead>
-            <tr className="row">{renderHeaders()}</tr>
-          </thead>
-          <tbody className="table__body">{renderRows()}</tbody>
-        </table>
+        <div className="table">
+          <header className="table__header">{renderHeaders()}</header>
+          <div className="table__body">{renderRows()}</div>
+        </div>
       </div>
     </>
   );

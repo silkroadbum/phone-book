@@ -45,26 +45,49 @@ body {
 }
 
 .table__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #000000;
-  padding: 5px;
   background-color: #346089;
   height: 60px;
   color: #ffffff;
+}
+
+.table__header-item {
+  flex: 1;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table__header-item--wider {
+  width: 300px;
+  padding-right: 40px;
 }
 
 .table__cell {
   height: 60px;
   padding: 5px;
   text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .table__cell--with-buttons {
   position: relative;
-  padding-right: 40px;
+  padding-right: 60px;
+  width: 250px;
 }
 
 .table__row {
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .table__row:hover {

@@ -38,32 +38,70 @@ function Row({
   };
 
   return editRowIndex === index ? (
-    <tr className="table__row">
-      <td className="table__cell">
-        <input onChange={onChangeInput} name="name" type="text" value={rowData.name} required />
-      </td>
-      <td className="table__cell">
+    <div className="table__row">
+      <div className="table__cell table__cell--name">
         <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="name"
+          type="text"
+          value={rowData.name}
+          required
+        />
+      </div>
+      <div className="table__cell">
+        <input
+          className="table__input"
           onChange={onChangeInput}
           name="birthday"
           type="date"
           value={dayjs(rowData.birthday).format('YYYY-MM-DD')}
         />
-      </td>
-      <td className="table__cell">
-        <input onChange={onChangeInput} name="mobilePhone" type="tel" value={rowData.mobilePhone} />
-      </td>
-      <td className="table__cell">
-        <input onChange={onChangeInput} name="cityPhone" type="text" value={rowData.cityPhone} />
-      </td>
-      <td className="table__cell">
-        <input onChange={onChangeInput} name="workPhone" type="text" value={rowData.workPhone} />
-      </td>
-      <td className="table__cell">
-        <input onChange={onChangeInput} name="workPhone" type="text" value={rowData.email} />
-      </td>
-      <td className="table__cell table__cell--with-buttons">
-        <input onChange={onChangeInput} name="country" type="text" value={rowData.country} />
+      </div>
+      <div className="table__cell">
+        <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="mobilePhone"
+          type="tel"
+          value={rowData.mobilePhone}
+        />
+      </div>
+      <div className="table__cell">
+        <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="cityPhone"
+          type="text"
+          value={rowData.cityPhone}
+        />
+      </div>
+      <div className="table__cell">
+        <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="workPhone"
+          type="text"
+          value={rowData.workPhone}
+        />
+      </div>
+      <div className="table__cell">
+        <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="workPhone"
+          type="text"
+          value={rowData.email}
+        />
+      </div>
+      <div className="table__cell table__cell--with-buttons">
+        <input
+          className="table__input"
+          onChange={onChangeInput}
+          name="country"
+          type="text"
+          value={rowData.country}
+        />
         {
           <Buttons
             onClickEdit={onClickEdit}
@@ -72,17 +110,17 @@ function Row({
             onSave={handleSave}
           />
         }
-      </td>
-    </tr>
+      </div>
+    </div>
   ) : (
-    <tr className="table__row">
-      <td className="table__cell">{name}</td>
-      <td className="table__cell">{birthday ? dayjs(birthday).format('DD.MM.YYYY') : '-'}</td>
-      <td className="table__cell">{mobilePhone || '-'}</td>
-      <td className="table__cell">{cityPhone || '-'}</td>
-      <td className="table__cell">{workPhone || '-'}</td>
-      <td className="table__cell">{email || '-'}</td>
-      <td className="table__cell table__cell--with-buttons">
+    <div className="table__row">
+      <div className="table__cell">{name}</div>
+      <div className="table__cell">{birthday ? dayjs(birthday).format('DD.MM.YYYY') : '-'}</div>
+      <div className="table__cell">{mobilePhone || '-'}</div>
+      <div className="table__cell">{cityPhone || '-'}</div>
+      <div className="table__cell">{workPhone || '-'}</div>
+      <div className="table__cell">{email || '-'}</div>
+      <div className="table__cell table__cell--with-buttons">
         {country || '-'}
         {
           <Buttons
@@ -92,8 +130,8 @@ function Row({
             editRowIndex={editRowIndex}
           />
         }
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 
