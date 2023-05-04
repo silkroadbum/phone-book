@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { peoples } from '../../const';
+import { sortByNameDesc, sortByNameAsc, sortByBirthdayDesc, sortByBirthdayAsc } from '../../utils';
 
 const initialState = {
   data: peoples,
-  sortData: { id: 0, name: 'По имени(возрастание)' },
+  sortData: { id: 0, name: 'имени(возр.)' },
 };
 
 export const dataSlice = createSlice({
@@ -25,26 +26,16 @@ export const dataSlice = createSlice({
     sortingList: (state, action) => {
       switch (action.payload) {
         case 0:
-          state.data = state.data.sort((a, b) => {
-            if (a.name.toLowerCase() > b.name.toLowerCase()) {
-              return 1;
-            } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
+          state.data = state.data.sort(sortByNameDesc);
           break;
         case 1:
-          state.data = state.data.sort((a, b) => {
-            if (a.name.toLowerCase() > b.name.toLowerCase()) {
-              return -1;
-            } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
+          state.data = state.data.sort(sortByNameAsc);
+          break;
+        case 2:
+          state.data = state.data.sort(sortByBirthdayDesc);
+          break;
+        case 3:
+          state.data = state.data.sort(sortByBirthdayAsc);
           break;
         default:
           break;
